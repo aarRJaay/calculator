@@ -308,7 +308,7 @@ divide.addEventListener("mousedown", () => {
 });
 
 divide.addEventListener("mouseup", () => {
-  onRelease(divide, "num");
+  onRelease(divide, "op");
 });
 
 const equals = document.querySelector("#equals");
@@ -375,7 +375,11 @@ function operate(value1, value2, operator) {
   } else if (operator === "multiply") {
     return value1 * value2;
   } else if (operator === "divide") {
-    return value1 / value2;
+    if (value2 === 0) {
+      return "OUCH!!";
+    } else {
+      return value1 / value2;
+    }
   } else if (operator === "store") {
     store = answer;
   }
