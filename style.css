@@ -1,0 +1,90 @@
+#calculator {
+  border: 5px solid black;
+  background: black;
+  width: 310px;
+  height: 350px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  font-weight: lighter;
+  font-size: 20px;
+  /* justify-content: center; */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 310px;
+  height: 55px;
+  justify-content: center;
+  padding: 1px;
+}
+
+.number-button {
+  border: 1px solid white;
+  background: #7541aa;
+  color: white;
+  border-radius: 10px;
+  width: 75px;
+  height: 50px;
+  margin: 3px;
+  align-content: center;
+  /* align-self: center; */
+  text-align: center;
+}
+
+.ex-button {
+  border: 1px solid white;
+  background: #4190aa;
+  color: black;
+  border-radius: 10px;
+  width: 75px;
+  height: 50px;
+  margin: 3px;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+.op-button {
+  border: 1px solid white;
+  background: #ff9233;
+  color: black;
+  border-radius: 10px;
+  width: 75px;
+  height: 50px;
+  margin: 3px;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+
+.zero {
+  border: 1px solid white;
+  background: #7541aa;
+  color: white;
+  border-radius: 10px;
+  width: 155px;
+  height: 50px;
+  margin: 3px;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+}
+
+.output {
+  border: 1px solid white;
+  background: grey;
+  width: 300px;
+  height: 50px;
+  margin: 3px;
+  font-size: 30px;
+  font-weight: boldest;
+  align-content: center;
+  align-self: center;
+  padding-right: 10px;
+  text-align: right;
+}
