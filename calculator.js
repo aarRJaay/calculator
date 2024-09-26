@@ -1,5 +1,4 @@
 let answer = 0;
-// let store = 0;
 let operation = "";
 let input = [];
 let value = 0;
@@ -7,13 +6,13 @@ let opPushed = 0;
 let numCount = 0;
 let memStore = 0;
 let total = 0;
+let plusMinusPressed = 0;
 
 // 17 char limit
 
 const display = document.querySelector("#output");
 
 const clr = document.querySelector("#clr");
-console.log("clear");
 clr.addEventListener("click", () => {
   value = 0;
   answer = 0;
@@ -30,28 +29,39 @@ clr.addEventListener("mouseup", () => {
 });
 
 const plusminus = document.querySelector("#plusminus");
-console.log("plusminus");
 plusminus.addEventListener("click", () => {
-  input.push("-");
+  if (plusMinusPressed == 0) {
+    input.unshift("-");
+    value = makeNumber(input);
+    display.textContent = value;
+    plusMinusPressed = 1;
+  } else {
+    input.pop();
+    value = makeNumber(input);
+    display.textContent = value;
+    plusMinusPressed = 0;
+  }
+});
+
+const back = document.querySelector("#back");
+back.addEventListener("click", () => {
+  input.pop();
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
-plusminus.addEventListener("mousedown", () => {
-  onPress(plusminus);
+back.addEventListener("mousedown", () => {
+  onPress(back);
 });
 
-plusminus.addEventListener("mouseup", () => {
-  onRelease(plusminus, "ex");
+back.addEventListener("mouseup", () => {
+  onRelease(back, "ex");
 });
 
 const point = document.querySelector("#point");
-console.log(point);
 point.addEventListener("click", () => {
   input.push(".");
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -64,11 +74,9 @@ point.addEventListener("mouseup", () => {
 });
 
 const one = document.querySelector("#one");
-console.log(one);
 one.addEventListener("click", () => {
   input.push(1);
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -81,11 +89,9 @@ one.addEventListener("mouseup", () => {
 });
 
 const two = document.querySelector("#two");
-console.log(two);
 two.addEventListener("click", () => {
   input.push(2);
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -98,11 +104,9 @@ two.addEventListener("mouseup", () => {
 });
 
 const three = document.querySelector("#three");
-console.log(three);
 three.addEventListener("click", () => {
   input.push(3);
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -115,12 +119,10 @@ three.addEventListener("mouseup", () => {
 });
 
 const four = document.querySelector("#four");
-console.log(four);
 four.addEventListener("click", () => {
   input.push(4);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -133,12 +135,10 @@ four.addEventListener("mouseup", () => {
 });
 
 const five = document.querySelector("#five");
-console.log(five);
 five.addEventListener("click", () => {
   input.push(5);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -151,12 +151,10 @@ five.addEventListener("mouseup", () => {
 });
 
 const six = document.querySelector("#six");
-console.log(six);
 six.addEventListener("click", () => {
   input.push(6);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -169,12 +167,10 @@ six.addEventListener("mouseup", () => {
 });
 
 const seven = document.querySelector("#seven");
-console.log(seven);
 seven.addEventListener("click", () => {
   input.push(7);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -186,12 +182,10 @@ seven.addEventListener("mouseup", () => {
   onRelease(seven, "num");
 });
 const eight = document.querySelector("#eight");
-console.log(eight);
 eight.addEventListener("click", () => {
   input.push(8);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -204,12 +198,9 @@ eight.addEventListener("mouseup", () => {
 });
 
 const nine = document.querySelector("#nine");
-console.log(nine);
 nine.addEventListener("click", () => {
   input.push(9);
-
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -222,12 +213,10 @@ nine.addEventListener("mouseup", () => {
 });
 
 const zero = document.querySelector("#zero");
-console.log(zero);
 zero.addEventListener("click", () => {
   input.push(0);
 
   value = makeNumber(input);
-  console.log(value);
   display.textContent = value;
 });
 
@@ -240,7 +229,6 @@ zero.addEventListener("mouseup", () => {
 });
 
 const plus = document.querySelector("#add");
-console.log("+");
 plus.addEventListener("click", () => {
   operation = "add";
   total = value;
@@ -259,7 +247,6 @@ plus.addEventListener("mouseup", () => {
 
 const subtract = document.querySelector("#minus");
 subtract.addEventListener("click", () => {
-  console.log("-");
   operation = "subtract";
   total = value;
   value = 0;
@@ -277,7 +264,6 @@ minus.addEventListener("mouseup", () => {
 
 const multiply = document.querySelector("#multiply");
 multiply.addEventListener("click", () => {
-  console.log("*");
   operation = "multiply";
   total = value;
   value = 0;
@@ -295,7 +281,6 @@ multiply.addEventListener("mouseup", () => {
 
 const divide = document.querySelector("#divide");
 divide.addEventListener("click", () => {
-  console.log("/");
   operation = "divide";
   total = value;
   value = 0;
@@ -312,7 +297,6 @@ divide.addEventListener("mouseup", () => {
 });
 
 const equals = document.querySelector("#equals");
-console.log("=");
 clearScreen();
 equals.addEventListener("click", () => {
   answer = operate(total, value, operation);
@@ -347,12 +331,6 @@ function onRelease(pressed, btnType) {
 function clearScreen() {
   display.textContent = "";
 }
-// const operator = document.querySelector("#memStore");
-// console.log("MEM");
-// zero.addEventListener("click", () => {
-//   memStore = total;
-// });
-//TODO: also send button type as well as actual button name
 
 function makeNumber(input) {
   if (input == "-") {
@@ -366,9 +344,8 @@ function makeNumber(input) {
 }
 
 function operate(value1, value2, operator) {
+  plusMinusPressed = 0;
   if (operator === "add") {
-    // let a = value1 + value2;
-    // console.log(value1, value2, operator, a);
     return value1 + value2;
   } else if (operator === "subtract") {
     return value1 - value2;
