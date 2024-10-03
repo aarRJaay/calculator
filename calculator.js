@@ -7,6 +7,7 @@ let numCount = 0;
 let memStore = 0;
 let total = 0;
 let plusMinusPressed = 0;
+let decimalPressed = 0;
 
 // 17 char limit
 
@@ -60,9 +61,13 @@ back.addEventListener("mouseup", () => {
 
 const point = document.querySelector("#point");
 point.addEventListener("click", () => {
-  input.push(".");
-  value = makeNumber(input);
-  display.textContent = value;
+  if (decimalPressed == 1) {
+  } else {
+    input.push(".");
+    value = makeNumber(input);
+    display.textContent = value;
+    decimalPressed = 1;
+  }
 });
 
 point.addEventListener("mousedown", () => {
@@ -315,17 +320,29 @@ equals.addEventListener("mouseup", () => {
 });
 
 function onPress(pressed) {
-  pressed.style.background = "grey";
+  // pressed.style.background = "grey";
 }
 
 function onRelease(pressed, btnType) {
+  console.log(pressed.id);
   if (btnType === "num") {
-    pressed.style.background = "#7541aa";
+    if (pressed.id == "point") {
+      pressed.style.background = "grey";
+    } else {
+      pressed.style.background = "#7541aa";
+    }
   } else if (btnType === "ex") {
     pressed.style.background = "#4190aa";
+    resetPoint();
   } else {
     pressed.style.background = "#ff9233";
+    resetPoint();
   }
+}
+
+function resetPoint() {
+  point.style.background = "#7541aa";
+  decimalPressed = 0;
 }
 
 function clearScreen() {
