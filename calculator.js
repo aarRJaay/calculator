@@ -374,7 +374,5 @@ function operate(value1, value2, operator) {
     } else {
       return value1 / value2;
     }
-  } else if (operator === "store") {
-    store = answer;
   }
 }
