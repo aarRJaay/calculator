@@ -305,10 +305,11 @@ const equals = document.querySelector("#equals");
 clearScreen();
 equals.addEventListener("click", () => {
   answer = operate(total, value, operation);
-  display.textContent = answer;
-  value = answer;
+  const finalAnswer = checkAnswerLength();
+  display.textContent = finalAnswer;
+  value = finalAnswer;
   input = [];
-  total = answer;
+  total = finalAnswer;
 });
 
 equals.addEventListener("mousedown", () => {
@@ -318,6 +319,18 @@ equals.addEventListener("mousedown", () => {
 equals.addEventListener("mouseup", () => {
   onRelease(equals, "op");
 });
+
+function checkAnswerLength() {
+  if (answer.toString().length >= 15) {
+    console.log("BIG NUMBER");
+    const finalAnswer = answer.toExponential(10);
+    console.log(finalAnswer);
+    return finalAnswer;
+  } else {
+    console.log("OKAY SIZE NUMBER");
+    return answer;
+  }
+}
 
 function onPress(pressed) {
   // pressed.style.background = "grey";
