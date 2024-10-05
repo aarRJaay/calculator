@@ -10,7 +10,6 @@
   flex-direction: column;
   font-weight: lighter;
   font-size: 20px;
-  /* justify-content: center; */
 }
 
 .row {
@@ -87,4 +86,6 @@
   align-self: center;
   padding-right: 10px;
   text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
