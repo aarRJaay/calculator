@@ -305,7 +305,10 @@ const equals = document.querySelector("#equals");
 clearScreen();
 equals.addEventListener("click", () => {
   answer = operate(total, value, operation);
-  const finalAnswer = checkAnswerLength();
+  let finalAnswer = checkAnswerLength();
+  if (finalAnswer == 80085) {
+    finalAnswer = "Haha BOOBS - 80085";
+  }
   display.textContent = finalAnswer;
   value = finalAnswer;
   input = [];
